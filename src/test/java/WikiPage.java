@@ -1,3 +1,4 @@
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -5,22 +6,27 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class WikiPage {
 
-    public SelenideElement getElemListWiki(){
-        //$x("//div[@id='wiki-body']/ul[@first]/li[text()='Soft assertions']"); можно еще так
-        return $x("//div[@id='wiki-body']//h2[text()='Chapters']/following::ul/li/a[text()='Soft assertions']");
+    private final SelenideElement elemSoftAssertInContent =
+            $x("//div[@id='wiki-body']//h2[text()='Chapters']/following::ul/li/a[text()='Soft assertions']");
+    private final SelenideElement morePages = $x("//button[contains(@class,'js-wiki-more-pages')]");
+    private final SelenideElement elemSoftAssertInSidebar =
+            $x("//div[@class='wiki-rightbar']//ul/li[contains(@class,'wiki-more-pages')][2]//a");
+
+    public SelenideElement getElemListWiki() {
+        return elemSoftAssertInContent;
     }
 
-    public void clickMorePages () {
-        $x("//button[contains(@class,'js-wiki-more-pages')]").click();
+    public WikiPage clickMorePages() {
+        morePages.click();
+        return this;
     }
 
     public SelenideElement getSoftAssertions() {
-        return $x("//div[@class='wiki-rightbar']//ul/li[contains(@class,'wiki-more-pages')][2]//a");
+        return elemSoftAssertInSidebar;
     }
 
-//не уверена, что норм дублировать метод. можно было бы вынести в базовый класс наверно
     public SoftAssertionsPage openNextPage() {
-        $x("//div[@class='wiki-rightbar']//ul/li[contains(@class,'wiki-more-pages')][2]//a").click();
+        softAssertInSidebar.click();
         return new SoftAssertionsPage();
     }
 }

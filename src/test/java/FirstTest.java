@@ -23,9 +23,7 @@ public class FirstTest {
         WikiPage wikiPage = page.openNextPage();
         //$(byText("Home")).should(exist); проверка подлинности страницы
         wikiPage.getElemListWiki().should(exist);
-        wikiPage.clickMorePages();
-        wikiPage.getSoftAssertions().shouldHave(text("SoftAssertions"));
-        //$x("//div[@id='wiki-body']/ul[@first]/li/a[text()='Soft assertions']"); элемент из списка в теле
+        wikiPage.clickMorePages().getSoftAssertions().shouldHave(text("SoftAssertions"));
 
         SoftAssertionsPage softAssertionsPage = wikiPage.openNextPage();
         //$(byTagAndText("h1","SoftAssertions")).should(exist); проверка подлинности страницы
