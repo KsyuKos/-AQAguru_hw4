@@ -26,7 +26,7 @@ public class WikiPage {
     }
 
     public SoftAssertionsPage openNextPage() {
-        softAssertInSidebar.click();
+        elemSoftAssertInSidebar.click();
         return new SoftAssertionsPage();
     }
 }
