@@ -22,7 +22,7 @@ public class WikiPage {
     }
 
     public SelenideElement getSoftAssertions() {
-        return elemSoftAssertInSidebar;
+        return  elemSoftAssertInSidebar;
     }
 
     public SoftAssertionsPage openNextPage() {
